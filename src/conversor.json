@@ -1,0 +1,99 @@
+{
+    "Medidas" : [
+        {
+            "Medida" : "Comprimento",
+            "NomeUnidadeBase" : "Metro",
+            "SiglaUnidadeBase" : "m",
+            "Formulas" : [
+                {
+                    "Nome" : "Metro",
+                    "Sigla" : "m",
+                    "Formula" : 1
+                },
+                {
+                    "Nome" : "Quilômetro",
+                    "Sigla" : "Km",
+                    "Formula" : 1000
+                },
+                {
+                    "Nome" : "Decímetro",
+                    "Sigla" : "dm",
+                    "Formula" : 0.1
+                },
+                {
+                    "Nome" : "Centímetro",
+                    "Sigla" : "cm",
+                    "Formula" : 0.01
+                },
+                {
+                    "Nome" : "Milimetro",
+                    "Sigla" : "mm",
+                    "Formula" : 0.001
+                },
+                {
+                    "Nome" : "Milha",
+                    "Sigla" : "mi",
+                    "Formula" : 1609.344
+                },
+                {
+                    "Nome" : "Jarda",
+                    "Sigla" : "yd",
+                    "Formula" : 0.9144
+                },
+                {
+                    "Nome" : "Pé",
+                    "Sigla" : "ft",
+                    "Formula" : 0.3048
+                },
+                {
+                    "Nome" : "Polegada",
+                    "Sigla" : "in",
+                    "Formula" : 0.0254
+                },
+                {
+                    "Nome" : "Milha Náutica",
+                    "Sigla" : "mn",
+                    "Formula" : 1852
+                }
+            ]     
+        },
+        {
+            "Medida" : "Massa",
+            "NomeUnidadeBase" : "Grama",
+            "SiglaUnidadeBase" : "g",
+            "Formulas" : [
+                {
+                    "Nome" : "Grama",
+                    "Sigla" : "g",
+                    "Formula" : 1
+                },
+                {
+                    "Nome" : "Quilograma",
+                    "Sigla" : "Kg",
+                    "Formula" : 1000
+                },
+                {
+                    "Nome" : "Decigrama",
+                    "Sigla" : "dg",
+                    "Formula" : 0.1
+                },
+                {
+                    "Nome" : "Centigrama",
+                    "Sigla" : "cg",
+                    "Formula" : 0.01
+                },
+                {
+                    "Nome" : "Miligrama",
+                    "Sigla" : "mg",
+                    "Formula" : 0.001
+                },
+                {
+                    "Nome" : "Micrograma",
+                    "Sigla" : "mcg",
+                    "Formula" : 0.000001
+                }
+            ]     
+        }
+    ]
+}
+
