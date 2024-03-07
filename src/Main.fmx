@@ -1,0 +1,32 @@
+object FrmMain: TFrmMain
+  Left = 0
+  Top = 0
+  Caption = 'Conversor de Unidades'
+  ClientHeight = 567
+  ClientWidth = 384
+  FormFactor.Width = 1440
+  FormFactor.Height = 900
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 3
+  object Header: TToolBar
+    Size.Width = 384.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'bottomtoolbar'
+    TabOrder = 0
+    TintColor = claMediumblue
+    object HeaderLabel: TLabel
+      Align = Contents
+      StyledSettings = [Family]
+      Margins.Left = 10.000000000000000000
+      Size.Width = 374.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'toollabel'
+      TextSettings.Font.Size = 16.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TextSettings.FontColor = claWhite
+      Text = 'Conversor de Unidades'
+    end
+  end
+end
