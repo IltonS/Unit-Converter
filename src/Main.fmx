@@ -7,6 +7,7 @@ object FrmMain: TFrmMain
   FormFactor.Width = 1440
   FormFactor.Height = 900
   FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
   DesignerMasterStyle = 3
   object Header: TToolBar
     Size.Width = 384.000000000000000000
@@ -14,7 +15,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     StyleLookup = 'bottomtoolbar'
     TabOrder = 0
-    TintColor = claMediumblue
+    TintColor = xFF2B579A
     object HeaderLabel: TLabel
       Align = Contents
       StyledSettings = [Family]
@@ -28,5 +29,95 @@ object FrmMain: TFrmMain
       TextSettings.FontColor = claWhite
       Text = 'Conversor de Unidades'
     end
+  end
+  object CmbMedidas: TComboBox
+    Position.X = 8.000000000000000000
+    Position.Y = 128.000000000000000000
+    Size.Width = 368.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    OnChange = CmbMedidasChange
+  end
+  object EdtUnidadeOrigem: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 2
+    Position.X = 8.000000000000000000
+    Position.Y = 184.000000000000000000
+    Size.Width = 368.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    OnChange = EdtUnidadeOrigemChange
+  end
+  object CmbUnidadeOrigem: TComboBox
+    Position.X = 8.000000000000000000
+    Position.Y = 224.000000000000000000
+    Size.Width = 368.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    OnChange = CmbUnidadeOrigemChange
+  end
+  object EdtUnidadeDestino: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 4
+    Position.X = 8.000000000000000000
+    Position.Y = 280.000000000000000000
+    Size.Width = 368.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    OnChange = EdtUnidadeDestinoChange
+  end
+  object CmbUnidadeDestino: TComboBox
+    Position.X = 8.000000000000000000
+    Position.Y = 320.000000000000000000
+    Size.Width = 368.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    OnChange = CmbUnidadeDestinoChange
+  end
+  object LblBadgeFormula: TLabel
+    StyledSettings = [Family, FontColor]
+    Position.X = 8.000000000000000000
+    Position.Y = 376.000000000000000000
+    StyleLookup = 'toollabel'
+    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.StyleExt = {00060000000000000004000000}
+    Text = 'F'#243'rmula'
+    TabOrder = 8
+  end
+  object LblFormula: TLabel
+    StyledSettings = [Family, FontColor]
+    Position.X = 10.000000000000000000
+    Position.Y = 407.000000000000000000
+    Size.Width = 366.000000000000000000
+    Size.Height = 23.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'LblFormula'
+    TabOrder = 9
+  end
+  object LblUnidadeOrigem: TLabel
+    StyledSettings = [Family, FontColor]
+    Position.X = 6.000000000000000000
+    Position.Y = 64.000000000000000000
+    Size.Width = 370.000000000000000000
+    Size.Height = 23.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'toollabel'
+    Text = 'LblUnidadeOrigem'
+    TabOrder = 6
+  end
+  object LblUnidadeDestino: TLabel
+    StyledSettings = [Family, FontColor]
+    Position.X = 8.000000000000000000
+    Position.Y = 95.000000000000000000
+    Size.Width = 366.000000000000000000
+    Size.Height = 23.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.StyleExt = {00060000000000000004000000}
+    Text = 'LblUnidadeDestino'
+    TabOrder = 7
   end
 end
