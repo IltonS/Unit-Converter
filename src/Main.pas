@@ -65,8 +65,61 @@ begin
 end;
 
 procedure TFrmMain.AtualizarRelacao;
+var
+  Caption, Unidade: string;
+  FormulaSelecionadaOrigem, FormulaSelecionadaDestino: string;
+  I: Integer;
+  Formula: TJSONObject;
 begin
-  //
+  Caption := EmptyStr;
+
+  if Abs(StrToDouble(EdtUnidadeOrigem.Text)) < 0.00000001 then
+    Caption := FormatFloat('0.0000E+00', StrToDouble(EdtUnidadeOrigem.Text)) + ' '
+  else
+    Caption := FormatFloat('0.########', StrToDouble(EdtUnidadeOrigem.Text)) + ' ';
+
+  FormulaSelecionadaOrigem := CmbUnidadeOrigem.Items[CmbUnidadeOrigem.ItemIndex];
+  for I:=0 to Formulas.Count-1 do
+  begin
+    Formula := Formulas.Items[I] as TJSONObject;
+
+    if Formula.GetValue('Nome').Value = FormulaSelecionadaOrigem then
+    begin
+      if StrToDouble(EdtUnidadeOrigem.Text) = 1 then
+        Caption := Caption + Formula.GetValue('Nome').Value + ' ='
+      else
+        Caption := Caption + Formula.GetValue('Plural').Value + ' =';
+
+      Break;
+    end;
+  end;
+
+  LblUnidadeOrigem.Text := Caption;
+
+  Caption := EmptyStr;
+
+  if Abs(StrToDouble(EdtUnidadeDestino.Text)) < 0.00000001 then
+    Caption := FormatFloat('0.0000E+00', StrToDouble(EdtUnidadeDestino.Text)) + ' '
+  else
+    Caption := FormatFloat('0.########', StrToDouble(EdtUnidadeDestino.Text)) + ' ';
+
+  FormulaSelecionadaDestino := CmbUnidadeDestino.Items[CmbUnidadeDestino.ItemIndex];
+  for I:=0 to Formulas.Count-1 do
+  begin
+    Formula := Formulas.Items[I] as TJSONObject;
+
+    if Formula.GetValue('Nome').Value = FormulaSelecionadaDestino then
+    begin
+      if StrToDouble(EdtUnidadeDestino.Text) = 1 then
+        Caption := Caption + Formula.GetValue('Nome').Value
+      else
+        Caption := Caption + Formula.GetValue('Plural').Value;
+
+      Break;
+    end;
+  end;
+
+  LblUnidadeDestino.Text := Caption;
 end;
 
 procedure TFrmMain.CalcularUnidadeDestino;
@@ -108,7 +161,12 @@ begin
 
   // Atualizar Unidade de destino
   EdtUnidadeDestino.Tag := 1;
-  EdtUnidadeDestino.Text := FormatFloat('0.########', ValorDestino);
+
+  if Abs(ValorDestino) < 0.00000001 then
+    EdtUnidadeDestino.Text := FormatFloat('0.0000E+00', ValorDestino)
+  else
+    EdtUnidadeDestino.Text := FormatFloat('0.########', ValorDestino);
+
   EdtUnidadeDestino.Tag := 0;
 end;
 
@@ -151,7 +209,12 @@ begin
 
   // Atualizar Unidade de origem
   EdtUnidadeOrigem.Tag := 1;
-  EdtUnidadeOrigem.Text := FormatFloat('0.########', ValorOrigem);
+
+  if Abs(ValorOrigem) < 0.00000001 then
+    EdtUnidadeOrigem.Text := FormatFloat('0.0000E+00', ValorOrigem)
+  else
+    EdtUnidadeOrigem.Text := FormatFloat('0.########', ValorOrigem);
+
   EdtUnidadeOrigem.Tag := 0;
 end;
 
@@ -303,7 +366,7 @@ begin
 
   // converte para double e retorna
   if not TryStrToFloat(TempValue, Result, FmtSettings) then
-    raise Exception.CreateFmt('Error converting "%s" to a double', [AValue]);
+    raise Exception.CreateFmt('Erro ao converter "%s" para um número.', [AValue]);
 end;
 
 end.

@@ -81,13 +81,14 @@ object FrmMain: TFrmMain
     OnChange = CmbUnidadeDestinoChange
   end
   object LblBadgeFormula: TLabel
-    StyledSettings = [Family, FontColor]
+    StyledSettings = [Family]
     Position.X = 8.000000000000000000
     Position.Y = 455.000000000000000000
     StyleLookup = 'toollabel'
     TextSettings.Font.Size = 14.000000000000000000
     TextSettings.Font.StyleExt = {00060000000000000004000000}
-    Text = 'F'#243'rmula'
+    TextSettings.FontColor = xFF2B579A
+    Text = 'F'#211'RMULA'
     TabOrder = 8
   end
   object LblFormula: TLabel
@@ -118,7 +119,7 @@ object FrmMain: TFrmMain
     Size.Width = 366.000000000000000000
     Size.Height = 23.000000000000000000
     Size.PlatformDefault = False
-    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.Size = 22.000000000000000000
     TextSettings.Font.StyleExt = {00060000000000000004000000}
     Text = 'LblUnidadeDestino'
     TabOrder = 7

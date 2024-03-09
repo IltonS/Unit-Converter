@@ -197,7 +197,7 @@
         <AUP_READ_PHONE_STATE>false</AUP_READ_PHONE_STATE>
         <AUP_WRITE_CALENDAR>false</AUP_WRITE_CALENDAR>
         <AUP_WRITE_EXTERNAL_STORAGE>false</AUP_WRITE_EXTERNAL_STORAGE>
-        <VerInfo_Keys>package=dev.iltons.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=1;versionName=1.0.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Keys>package=dev.iltons.$(MSBuildProjectName);label=Conversor de Unidades;versionCode=1;versionName=1.0.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Android64)'!=''">
         <Cfg_1>true</Cfg_1>
