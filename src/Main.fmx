@@ -23,7 +23,7 @@ object FrmMain: TFrmMain
       Size.Width = 374.000000000000000000
       Size.Height = 48.000000000000000000
       Size.PlatformDefault = False
-      StyleLookup = 'toollabel'
+      StyleLookup = 'HeaderLabelStyle1'
       TextSettings.Font.Size = 16.000000000000000000
       TextSettings.Font.StyleExt = {00060000000000000004000000}
       TextSettings.FontColor = claWhite
@@ -36,6 +36,7 @@ object FrmMain: TFrmMain
     Size.Width = 368.000000000000000000
     Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
+    StyleLookup = 'CmbMedidasStyle1'
     TabOrder = 1
     OnChange = CmbMedidasChange
   end
@@ -119,5 +120,130 @@ object FrmMain: TFrmMain
     TextSettings.Font.StyleExt = {00060000000000000004000000}
     Text = 'LblUnidadeDestino'
     TabOrder = 7
+  end
+  object MmConversor: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Lines.Strings = (
+      '{'
+      '    "Medidas" : ['
+      '        {'
+      '            "Medida" : "Comprimento",'
+      '            "NomeUnidadeBase" : "Metro",'
+      '            "SiglaUnidadeBase" : "m",'
+      '            "Formulas" : ['
+      '                {'
+      '                    "Nome" : "Metro",'
+      '                    "Plural" : "Metros",'
+      '                    "Sigla" : "m",'
+      '                    "Formula" : 1'
+      '                },'
+      '                {'
+      '                    "Nome" : "Quil'#244'metro",'
+      '                    "Plural" : "Quil'#244'metros",'
+      '                    "Sigla" : "Km",'
+      '                    "Formula" : 1000'
+      '                },'
+      '                {'
+      '                    "Nome" : "Dec'#237'metro",'
+      '                    "Plural" : "Dec'#237'metros",'
+      '                    "Sigla" : "dm",'
+      '                    "Formula" : 0.1'
+      '                },'
+      '                {'
+      '                    "Nome" : "Cent'#237'metro",'
+      '                    "Plural" : "Cent'#237'metros",'
+      '                    "Sigla" : "cm",'
+      '                    "Formula" : 0.01'
+      '                },'
+      '                {'
+      '                    "Nome" : "Milimetro",'
+      '                    "Plural" : "Milimetros",'
+      '                    "Sigla" : "mm",'
+      '                    "Formula" : 0.001'
+      '                },'
+      '                {'
+      '                    "Nome" : "Milha",'
+      '                    "Plural" : "Milhas",'
+      '                    "Sigla" : "mi",'
+      '                    "Formula" : 1609.344'
+      '                },'
+      '                {'
+      '                    "Nome" : "Jarda",'
+      '                    "Plural" : "Jardas",'
+      '                    "Sigla" : "yd",'
+      '                    "Formula" : 0.9144'
+      '                },'
+      '                {'
+      '                    "Nome" : "P'#233'",'
+      '                    "Plural" : "P'#233's",'
+      '                    "Sigla" : "ft",'
+      '                    "Formula" : 0.3048'
+      '                },'
+      '                {'
+      '                    "Nome" : "Polegada",'
+      '                    "Plural" : "Polegadas",'
+      '                    "Sigla" : "in",'
+      '                    "Formula" : 0.0254'
+      '                },'
+      '                {'
+      '                    "Nome" : "Milha N'#225'utica",'
+      '                    "Plural" : "Milhas N'#225'uticas",'
+      '                    "Sigla" : "mn",'
+      '                    "Formula" : 1852'
+      '                }'
+      '            ]     '
+      '        },'
+      '        {'
+      '            "Medida" : "Massa",'
+      '            "NomeUnidadeBase" : "Grama",'
+      '            "SiglaUnidadeBase" : "g",'
+      '            "Formulas" : ['
+      '                {'
+      '                    "Nome" : "Grama",'
+      '                    "Plural" : "Gramas",'
+      '                    "Sigla" : "g",'
+      '                    "Formula" : 1'
+      '                },'
+      '                {'
+      '                    "Nome" : "Quilograma",'
+      '                    "Plural" : "Quilogramas",'
+      '                    "Sigla" : "Kg",'
+      '                    "Formula" : 1000'
+      '                },'
+      '                {'
+      '                    "Nome" : "Decigrama",'
+      '                    "Plural" : "Decigramas",'
+      '                    "Sigla" : "dg",'
+      '                    "Formula" : 0.1'
+      '                },'
+      '                {'
+      '                    "Nome" : "Centigrama",'
+      '                    "Plural" : "Centigramas",'
+      '                    "Sigla" : "cg",'
+      '                    "Formula" : 0.01'
+      '                },'
+      '                {'
+      '                    "Nome" : "Miligrama",'
+      '                    "Plural" : "Miligramas",'
+      '                    "Sigla" : "mg",'
+      '                    "Formula" : 0.001'
+      '                },'
+      '                {'
+      '                    "Nome" : "Micrograma",'
+      '                    "Plural" : "Microgramas",'
+      '                    "Sigla" : "mcg",'
+      '                    "Formula" : 0.000001'
+      '                }'
+      '            ]     '
+      '        }'
+      '    ]'
+      '}')
+    Position.X = 326.000000000000000000
+    Position.Y = 56.000000000000000000
+    TabOrder = 10
+    Visible = False
+    Viewport.Width = 37.000000000000000000
+    Viewport.Height = 37.000000000000000000
   end
 end

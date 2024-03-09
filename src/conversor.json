@@ -7,51 +7,61 @@
             "Formulas" : [
                 {
                     "Nome" : "Metro",
+                    "Plural" : "Metros",
                     "Sigla" : "m",
                     "Formula" : 1
                 },
                 {
                     "Nome" : "Quilômetro",
+                    "Plural" : "Quilômetros",
                     "Sigla" : "Km",
                     "Formula" : 1000
                 },
                 {
                     "Nome" : "Decímetro",
+                    "Plural" : "Decímetros",
                     "Sigla" : "dm",
                     "Formula" : 0.1
                 },
                 {
                     "Nome" : "Centímetro",
+                    "Plural" : "Centímetros",
                     "Sigla" : "cm",
                     "Formula" : 0.01
                 },
                 {
                     "Nome" : "Milimetro",
+                    "Plural" : "Milimetros",
                     "Sigla" : "mm",
                     "Formula" : 0.001
                 },
                 {
                     "Nome" : "Milha",
+                    "Plural" : "Milhas",
                     "Sigla" : "mi",
                     "Formula" : 1609.344
                 },
                 {
                     "Nome" : "Jarda",
+                    "Plural" : "Jardas",
                     "Sigla" : "yd",
                     "Formula" : 0.9144
                 },
                 {
                     "Nome" : "Pé",
+                    "Plural" : "Pés",
                     "Sigla" : "ft",
                     "Formula" : 0.3048
                 },
                 {
                     "Nome" : "Polegada",
+                    "Plural" : "Polegadas",
                     "Sigla" : "in",
                     "Formula" : 0.0254
                 },
                 {
                     "Nome" : "Milha Náutica",
+                    "Plural" : "Milhas Náuticas",
                     "Sigla" : "mn",
                     "Formula" : 1852
                 }
@@ -64,31 +74,37 @@
             "Formulas" : [
                 {
                     "Nome" : "Grama",
+                    "Plural" : "Gramas",
                     "Sigla" : "g",
                     "Formula" : 1
                 },
                 {
                     "Nome" : "Quilograma",
+                    "Plural" : "Quilogramas",
                     "Sigla" : "Kg",
                     "Formula" : 1000
                 },
                 {
                     "Nome" : "Decigrama",
+                    "Plural" : "Decigramas",
                     "Sigla" : "dg",
                     "Formula" : 0.1
                 },
                 {
                     "Nome" : "Centigrama",
+                    "Plural" : "Centigramas",
                     "Sigla" : "cg",
                     "Formula" : 0.01
                 },
                 {
                     "Nome" : "Miligrama",
+                    "Plural" : "Miligramas",
                     "Sigla" : "mg",
                     "Formula" : 0.001
                 },
                 {
                     "Nome" : "Micrograma",
+                    "Plural" : "Microgramas",
                     "Sigla" : "mcg",
                     "Formula" : 0.000001
                 }
