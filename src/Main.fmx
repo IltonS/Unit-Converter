@@ -32,7 +32,7 @@ object FrmMain: TFrmMain
   end
   object CmbMedidas: TComboBox
     Position.X = 8.000000000000000000
-    Position.Y = 128.000000000000000000
+    Position.Y = 151.000000000000000000
     Size.Width = 368.000000000000000000
     Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
@@ -43,8 +43,9 @@ object FrmMain: TFrmMain
   object EdtUnidadeOrigem: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     TabOrder = 2
+    KeyboardType = DecimalNumberPad
     Position.X = 8.000000000000000000
-    Position.Y = 184.000000000000000000
+    Position.Y = 223.000000000000000000
     Size.Width = 368.000000000000000000
     Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
@@ -52,7 +53,7 @@ object FrmMain: TFrmMain
   end
   object CmbUnidadeOrigem: TComboBox
     Position.X = 8.000000000000000000
-    Position.Y = 224.000000000000000000
+    Position.Y = 263.000000000000000000
     Size.Width = 368.000000000000000000
     Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
@@ -62,8 +63,9 @@ object FrmMain: TFrmMain
   object EdtUnidadeDestino: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     TabOrder = 4
+    KeyboardType = DecimalNumberPad
     Position.X = 8.000000000000000000
-    Position.Y = 280.000000000000000000
+    Position.Y = 335.000000000000000000
     Size.Width = 368.000000000000000000
     Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
@@ -71,7 +73,7 @@ object FrmMain: TFrmMain
   end
   object CmbUnidadeDestino: TComboBox
     Position.X = 8.000000000000000000
-    Position.Y = 320.000000000000000000
+    Position.Y = 375.000000000000000000
     Size.Width = 368.000000000000000000
     Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
@@ -81,7 +83,7 @@ object FrmMain: TFrmMain
   object LblBadgeFormula: TLabel
     StyledSettings = [Family, FontColor]
     Position.X = 8.000000000000000000
-    Position.Y = 376.000000000000000000
+    Position.Y = 455.000000000000000000
     StyleLookup = 'toollabel'
     TextSettings.Font.Size = 14.000000000000000000
     TextSettings.Font.StyleExt = {00060000000000000004000000}
@@ -91,7 +93,7 @@ object FrmMain: TFrmMain
   object LblFormula: TLabel
     StyledSettings = [Family, FontColor]
     Position.X = 10.000000000000000000
-    Position.Y = 407.000000000000000000
+    Position.Y = 486.000000000000000000
     Size.Width = 366.000000000000000000
     Size.Height = 23.000000000000000000
     Size.PlatformDefault = False

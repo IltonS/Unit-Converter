@@ -6,7 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.Controls.Presentation, FMX.Styles.Objects, FMX.Edit, FMX.ListBox,
-  FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, System.JSON, FMX.Platform.Android;
+  FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, System.JSON, FMX.Platform.Android,
+  System.StrUtils;
 
 type
   TFrmMain = class(TForm)
@@ -43,6 +44,7 @@ type
     procedure AtualizarRelacao;
   public
     { Public declarations }
+    function StrToDouble(const AValue: string): double;
   end;
 
 var
@@ -68,13 +70,89 @@ begin
 end;
 
 procedure TFrmMain.CalcularUnidadeDestino;
+var
+  ValorOrigem, ValorDestino, ValorFormula, ValorBase: double;
+  FormulaSelecionadaOrigem, FormulaSelecionadaDestino: string;
+  I: Integer;
+  Formula: TJSONObject;
 begin
-  //
+  ValorOrigem := StrToDouble(EdtUnidadeOrigem.Text);
+
+  // Converter o valor origem para unidade base
+  FormulaSelecionadaOrigem := CmbUnidadeOrigem.Items[CmbUnidadeOrigem.ItemIndex];
+  for I:=0 to Formulas.Count-1 do
+  begin
+    Formula := Formulas.Items[I] as TJSONObject;
+
+    if Formula.GetValue('Nome').Value = FormulaSelecionadaOrigem then
+    begin
+      ValorFormula := StrToDouble(Formula.GetValue('Formula').Value);
+      ValorBase := ValorOrigem * ValorFormula;
+      Break;
+    end;
+  end;
+
+  // Converter o valor base para o destino
+  FormulaSelecionadaDestino := CmbUnidadeDestino.Items[CmbUnidadeDestino.ItemIndex];
+  for I:=0 to Formulas.Count-1 do
+  begin
+    Formula := Formulas.Items[I] as TJSONObject;
+
+    if Formula.GetValue('Nome').Value = FormulaSelecionadaDestino then
+    begin
+      ValorFormula := StrToDouble(Formula.GetValue('Formula').Value);
+      ValorDestino := ValorBase / ValorFormula;
+      Break;
+    end;
+  end;
+
+  // Atualizar Unidade de destino
+  EdtUnidadeDestino.Tag := 1;
+  EdtUnidadeDestino.Text := FormatFloat('0.########', ValorDestino);
+  EdtUnidadeDestino.Tag := 0;
 end;
 
 procedure TFrmMain.CalcularUnidadeOrigem;
+var
+  ValorOrigem, ValorDestino, ValorFormula, ValorBase: double;
+  FormulaSelecionadaOrigem, FormulaSelecionadaDestino: string;
+  I: Integer;
+  Formula: TJSONObject;
 begin
-  //
+  ValorDestino := StrToDouble(EdtUnidadeDestino.Text);
+
+  // Converter o valor destino para unidade base
+  FormulaSelecionadaDestino := CmbUnidadeDestino.Items[CmbUnidadeDestino.ItemIndex];
+  for I:=0 to Formulas.Count-1 do
+  begin
+    Formula := Formulas.Items[I] as TJSONObject;
+
+    if Formula.GetValue('Nome').Value = FormulaSelecionadaDestino then
+    begin
+      ValorFormula := StrToDouble(Formula.GetValue('Formula').Value);
+      ValorBase := ValorDestino * ValorFormula;
+      Break;
+    end;
+  end;
+
+  // Converter o valor base para a origem
+  FormulaSelecionadaOrigem := CmbUnidadeOrigem.Items[CmbUnidadeOrigem.ItemIndex];
+  for I:=0 to Formulas.Count-1 do
+  begin
+    Formula := Formulas.Items[I] as TJSONObject;
+
+    if Formula.GetValue('Nome').Value = FormulaSelecionadaOrigem then
+    begin
+      ValorFormula := StrToDouble(Formula.GetValue('Formula').Value);
+      ValorOrigem := ValorBase / ValorFormula;
+      Break;
+    end;
+  end;
+
+  // Atualizar Unidade de origem
+  EdtUnidadeOrigem.Tag := 1;
+  EdtUnidadeOrigem.Text := FormatFloat('0.########', ValorOrigem);
+  EdtUnidadeOrigem.Tag := 0;
 end;
 
 procedure TFrmMain.CarregarListaMedidas;
@@ -115,6 +193,8 @@ begin
         CmbUnidadeOrigem.Items.Add(Formula.GetValue('Nome').Value);
         CmbUnidadeDestino.Items.Add(Formula.GetValue('Nome').Value);
       end;
+
+      Break;
     end;
   end;
 end;
@@ -178,10 +258,8 @@ begin
 end;
 
 procedure TFrmMain.FormCreate(Sender: TObject);
-const
-  WordBlue = TAlphaColor($FF2B579A);
 begin
-  TAndroidHelper.Activity.getWindow.setStatusBarColor(TAlphaColorRec.ColorToRGB(WordBlue));
+  TAndroidHelper.Activity.getWindow.setStatusBarColor(Integer(Header.TintColor));
 
   Conversor := TJSONObject.ParseJSONValue(MmConversor.Lines.Text) as TJSONObject;
   Medidas := Conversor.GetValue('Medidas') as TJSONArray;
@@ -209,6 +287,23 @@ begin
   CalcularUnidadeDestino;
   AtualizarFormula;
   AtualizarRelacao;
+end;
+
+function TFrmMain.StrToDouble(const AValue: string): double;
+var
+  FmtSettings: TFormatSettings;
+  TempValue: string;
+begin
+  // Pega as configurações de formato
+  FmtSettings := TFormatSettings.Create;
+
+  // Substitui ponto e virgulas com o separador decimal apropriado
+  TempValue := ReplaceStr(AValue, '.', FmtSettings.DecimalSeparator);
+  TempValue := ReplaceStr(TempValue, ',', FmtSettings.DecimalSeparator);
+
+  // converte para double e retorna
+  if not TryStrToFloat(TempValue, Result, FmtSettings) then
+    raise Exception.CreateFmt('Error converting "%s" to a double', [AValue]);
 end;
 
 end.
