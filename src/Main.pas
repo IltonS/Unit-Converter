@@ -45,6 +45,7 @@ type
   public
     { Public declarations }
     function StrToDouble(const AValue: string): double;
+    function DoubleToStr(const AValue: double; MaxDigits: Integer = 9): string;
   end;
 
 var
@@ -60,8 +61,63 @@ uses
 { TFrmMain }
 
 procedure TFrmMain.AtualizarFormula;
+var
+  ValorFormulaCalc, ValorFormulaOrigem, ValorFormulaDestino: double;
+  FormulaSelecionadaOrigem, FormulaSelecionadaDestino: string;
+  I: Integer;
+  Formula: TJSONObject;
+  FormulaString, Operacao: string;
+  ValorAproximado: Boolean;
 begin
-  //
+  FormulaSelecionadaOrigem := CmbUnidadeOrigem.Items[CmbUnidadeOrigem.ItemIndex];
+
+  for I:=0 to Formulas.Count-1 do
+  begin
+    Formula := Formulas.Items[I] as TJSONObject;
+
+    if Formula.GetValue('Nome').Value = FormulaSelecionadaOrigem then
+    begin
+      ValorFormulaOrigem := StrToDouble(Formula.GetValue('Formula').Value);
+      Break;
+    end;
+  end;
+
+  FormulaSelecionadaDestino := CmbUnidadeDestino.Items[CmbUnidadeDestino.ItemIndex];
+
+  for I:=0 to Formulas.Count-1 do
+  begin
+    Formula := Formulas.Items[I] as TJSONObject;
+
+    if Formula.GetValue('Nome').Value = FormulaSelecionadaDestino then
+    begin
+      ValorFormulaDestino := StrToDouble(Formula.GetValue('Formula').Value);
+      Break;
+    end;
+  end;
+
+  if ValorFormulaOrigem >= ValorFormulaDestino then
+  begin
+    Operacao := 'multiplicar';
+    ValorFormulaCalc := ValorFormulaOrigem / ValorFormulaDestino;
+  end
+  else
+  begin
+    Operacao := 'dividir';
+    ValorFormulaCalc := 1 / (ValorFormulaOrigem / ValorFormulaDestino);
+  end;
+
+  ValorAproximado := (Abs(ValorFormulaCalc) < 0.00000001) or (Abs(ValorFormulaCalc) >= 999999);
+
+  FormulaString := EmptyStr;
+
+  if ValorAproximado then
+    FormulaString := 'para um resultado aproximado, ';
+
+  FormulaString := FormulaString + Operacao + ' o valor ';
+  FormulaString := FormulaString + LowerCase(CmbMedidas.Items[CmbMedidas.ItemIndex]) + ' por ';
+  FormulaString := FormulaString + DoubleToStr(ValorFormulaCalc, 6);
+
+  LblFormula.Text := FormulaString;
 end;
 
 procedure TFrmMain.AtualizarRelacao;
@@ -72,11 +128,7 @@ var
   Formula: TJSONObject;
 begin
   Caption := EmptyStr;
-
-  if Abs(StrToDouble(EdtUnidadeOrigem.Text)) < 0.00000001 then
-    Caption := FormatFloat('0.0000E+00', StrToDouble(EdtUnidadeOrigem.Text)) + ' '
-  else
-    Caption := FormatFloat('0.########', StrToDouble(EdtUnidadeOrigem.Text)) + ' ';
+  Caption := DoubleToStr(StrToDouble(EdtUnidadeOrigem.Text)) + ' ';
 
   FormulaSelecionadaOrigem := CmbUnidadeOrigem.Items[CmbUnidadeOrigem.ItemIndex];
   for I:=0 to Formulas.Count-1 do
@@ -97,11 +149,7 @@ begin
   LblUnidadeOrigem.Text := Caption;
 
   Caption := EmptyStr;
-
-  if Abs(StrToDouble(EdtUnidadeDestino.Text)) < 0.00000001 then
-    Caption := FormatFloat('0.0000E+00', StrToDouble(EdtUnidadeDestino.Text)) + ' '
-  else
-    Caption := FormatFloat('0.########', StrToDouble(EdtUnidadeDestino.Text)) + ' ';
+  Caption := DoubleToStr(StrToDouble(EdtUnidadeDestino.Text)) + ' ';
 
   FormulaSelecionadaDestino := CmbUnidadeDestino.Items[CmbUnidadeDestino.ItemIndex];
   for I:=0 to Formulas.Count-1 do
@@ -161,12 +209,7 @@ begin
 
   // Atualizar Unidade de destino
   EdtUnidadeDestino.Tag := 1;
-
-  if Abs(ValorDestino) < 0.00000001 then
-    EdtUnidadeDestino.Text := FormatFloat('0.0000E+00', ValorDestino)
-  else
-    EdtUnidadeDestino.Text := FormatFloat('0.########', ValorDestino);
-
+  EdtUnidadeDestino.Text := DoubleToStr(ValorDestino);
   EdtUnidadeDestino.Tag := 0;
 end;
 
@@ -209,12 +252,7 @@ begin
 
   // Atualizar Unidade de origem
   EdtUnidadeOrigem.Tag := 1;
-
-  if Abs(ValorOrigem) < 0.00000001 then
-    EdtUnidadeOrigem.Text := FormatFloat('0.0000E+00', ValorOrigem)
-  else
-    EdtUnidadeOrigem.Text := FormatFloat('0.########', ValorOrigem);
-
+  EdtUnidadeOrigem.Text := DoubleToStr(ValorOrigem);
   EdtUnidadeOrigem.Tag := 0;
 end;
 
@@ -278,6 +316,7 @@ begin
     CmbUnidadeDestino.Tag := 0;
 
     CalcularUnidadeDestino;
+    AtualizarFormula;
     AtualizarRelacao;
   end;
 end;
@@ -367,6 +406,14 @@ begin
   // converte para double e retorna
   if not TryStrToFloat(TempValue, Result, FmtSettings) then
     raise Exception.CreateFmt('Erro ao converter "%s" para um número.', [AValue]);
+end;
+
+function TFrmMain.DoubleToStr(const AValue: double; MaxDigits: Integer = 9): string;
+begin
+  if (Abs(AValue) < 0.00000001) or (Abs(AValue) >= StrToInt(StringOfChar('9', MaxDigits))) then
+    Result := FormatFloat('0.0000E+00', AValue)
+  else
+    Result := FormatFloat('0.########', AValue);
 end;
 
 end.

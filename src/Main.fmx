@@ -96,8 +96,9 @@ object FrmMain: TFrmMain
     Position.X = 10.000000000000000000
     Position.Y = 486.000000000000000000
     Size.Width = 366.000000000000000000
-    Size.Height = 23.000000000000000000
+    Size.Height = 59.000000000000000000
     Size.PlatformDefault = False
+    TextSettings.VertAlign = Leading
     Text = 'LblFormula'
     TabOrder = 9
   end
